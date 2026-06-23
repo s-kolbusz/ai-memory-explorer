@@ -51,24 +51,8 @@ jobs:
       - name: Test
         run: bun test
 
-      - name: Build app bundle
-        run: bunx tauri build --bundles app --target "${{ matrix.target }}"
-
-      - name: Free disk space for DMG creation
-        run: |
-          df -h /
-          # The Rust build leaves multi-GB of intermediate artifacts in target/.
-          # We only need the final .app bundle (in bundle/) to create the DMG.
-          for dir in src-tauri/target/*/release src-tauri/target/release; do
-            [ -d "$dir" ] || continue
-            find "$dir" -mindepth 1 -maxdepth 1 ! -name bundle -exec rm -rf {} +
-          done
-          # Cargo registry/git caches are regeneratable and consume GBs.
-          rm -rf ~/.cargo/registry ~/.cargo/git
-          df -h /
-
-      - name: Package DMG
-        run: bun run package:macos-dmg
+      - name: Build app and DMG
+        run: bunx tauri build --bundles dmg --target "${{ matrix.target }}"
 
       - name: Upload DMG artifact
         uses: actions/upload-artifact@v4
