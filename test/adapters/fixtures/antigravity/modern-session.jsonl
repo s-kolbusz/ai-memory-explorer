@@ -1,0 +1,3 @@
+{"type":"USER_INPUT","step_index":0,"content":"<USER_REQUEST>\nHow do I set up a new database?\n</USER_REQUEST>","created_at":"2026-06-13T10:00:00.000Z","source":"user"}
+{"type":"PLANNER_RESPONSE","step_index":1,"content":"I'll help set up the database. First, let me check the current configuration.","created_at":"2026-06-13T10:00:02.000Z","source":"planner","tool_calls":[{"name":"readFile","args":{"Cwd":"/Users/testuser/Projects/my-app"}},{"name":"readFile","args":{"TargetFile":"/Users/testuser/Projects/my-app/package.json"}}]}
+{"type":"SYSTEM_MESSAGE","step_index":2,"content":"Stdout:\nnpm install pg sequelize\n\nThe command completed successfully.","created_at":"2026-06-13T10:00:05.000Z","source":"terminal"}

@@ -1,0 +1,4 @@
+{"type":"user","content":"How can I optimize this React component?","timestamp":"2026-06-13T10:00:00.000Z"}
+{"type":"model","content":"I see a few optimization opportunities. Let me analyze the component.","parts":[{"text":"Looking at your component, here are the main issues:"}],"timestamp":"2026-06-13T10:00:02.000Z"}
+{"type":"tool","content":"Analyzing component dependencies...","timestamp":"2026-06-13T10:00:03.000Z"}
+{"type":"model","content":"You should use useMemo for the expensive computation and React.memo for the child components.","timestamp":"2026-06-13T10:00:05.000Z"}

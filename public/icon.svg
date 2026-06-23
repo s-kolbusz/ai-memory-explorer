@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" fill="none" role="img" aria-labelledby="icon-title icon-desc">
+  <title id="icon-title">AI Conversations Explorer</title>
+  <desc id="icon-desc">A speech bubble combined with a magnifying glass and two AI circuit nodes.</desc>
+
+  <defs>
+    <mask id="lens-cutout" maskUnits="userSpaceOnUse" x="0" y="0" width="512" height="512">
+      <rect width="512" height="512" fill="white"/>
+      <circle cx="294" cy="238" r="82" fill="black"/>
+    </mask>
+  </defs>
+
+  <!-- Conversation bubble, cut by the magnifying lens for transparency -->
+  <path d="M138 118H285C344 118 392 166 392 225V278C392 323 355 360 310 360H202L144 416C133 426 116 419 116 403V360H108C73 360 45 332 45 297V211C45 160 87 118 138 118Z" fill="#3b82f6" mask="url(#lens-cutout)"/>
+
+  <!-- Magnifying glass ring -->
+  <circle cx="294" cy="238" r="103" stroke="#60a5fa" stroke-width="32"/>
+
+  <!-- Magnifying glass handle -->
+  <path d="M366 312L438 384" stroke="#60a5fa" stroke-width="38" stroke-linecap="round"/>
+
+  <!-- AI / agent trace marks inside the lens -->
+  <g fill="#93c5fd">
+    <rect x="248" y="257" width="19" height="64" rx="4"/>
+    <circle cx="257.5" cy="248" r="24"/>
+    <rect x="309" y="209" width="19" height="112" rx="4"/>
+    <circle cx="318.5" cy="200" r="24"/>
+  </g>
+</svg>

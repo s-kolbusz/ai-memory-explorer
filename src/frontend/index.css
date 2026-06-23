@@ -1,0 +1,266 @@
+@import "tailwindcss";
+@plugin "tailwindcss-animate";
+@plugin "@tailwindcss/typography";
+@import "@fontsource-variable/geist";
+
+@custom-variant dark (&:is(.dark *));
+
+/* ── Theme Variables ───────────────────────────────────── */
+
+:root,
+.light {
+  --background: oklch(0.97 0.005 280);
+  --foreground: oklch(0.145 0 0);
+  --card: oklch(0.99 0 0);
+  --card-foreground: oklch(0.145 0 0);
+  --popover: oklch(0.99 0 0);
+  --popover-foreground: oklch(0.145 0 0);
+  --primary: oklch(0.546 0.245 262.881);
+  --primary-foreground: oklch(0.985 0 0);
+  --secondary: oklch(0.92 0.005 280);
+  --secondary-foreground: oklch(0.205 0 0);
+  --muted: oklch(0.94 0.005 280);
+  --muted-foreground: oklch(0.556 0 0);
+  --accent: oklch(0.92 0.005 280);
+  --accent-foreground: oklch(0.205 0 0);
+  --destructive: oklch(0.577 0.245 27.325);
+  --destructive-foreground: oklch(0.985 0 0);
+  --border: oklch(0.87 0.005 280);
+  --input: oklch(0.87 0.005 280);
+  --ring: oklch(0.546 0.245 262.881);
+  --radius: 0.625rem;
+  --sidebar: oklch(0.96 0.005 280);
+  --sidebar-foreground: oklch(0.145 0 0);
+  --sidebar-primary: oklch(0.546 0.245 262.881);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.92 0.005 280);
+  --sidebar-accent-foreground: oklch(0.205 0 0);
+  --sidebar-border: oklch(0.87 0.005 280);
+  --sidebar-ring: oklch(0.708 0 0);
+
+  /* Chat-specific light tokens */
+  --user-bubble: oklch(0.92 0.02 260);
+  --agent-bubble: oklch(0.94 0.005 280);
+  --tool-call: oklch(0.9 0.01 260);
+  --diff-add: oklch(0.85 0.1 150);
+  --diff-remove: oklch(0.8 0.15 25);
+  --terminal-bg: oklch(0.15 0 0);
+  --file-preview: oklch(0.94 0.02 260);
+}
+
+.dark {
+  --background: oklch(0.13 0.005 280);
+  --foreground: oklch(0.985 0 0);
+  --card: oklch(0.17 0.005 280);
+  --card-foreground: oklch(0.985 0 0);
+  --popover: oklch(0.17 0.005 280);
+  --popover-foreground: oklch(0.985 0 0);
+  --primary: oklch(0.623 0.214 259.815);
+  --primary-foreground: oklch(0.205 0 0);
+  --secondary: oklch(0.24 0.005 280);
+  --secondary-foreground: oklch(0.985 0 0);
+  --muted: oklch(0.24 0.005 280);
+  --muted-foreground: oklch(0.65 0 0);
+  --accent: oklch(0.24 0.005 280);
+  --accent-foreground: oklch(0.985 0 0);
+  --destructive: oklch(0.704 0.191 22.216);
+  --destructive-foreground: oklch(0.985 0 0);
+  --border: oklch(0.28 0.005 280);
+  --input: oklch(0.28 0.005 280);
+  --ring: oklch(0.556 0 0);
+  --radius: 0.625rem;
+  --sidebar: oklch(0.15 0.005 280);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.623 0.214 259.815);
+  --sidebar-primary-foreground: oklch(0.205 0 0);
+  --sidebar-accent: oklch(0.24 0.005 280);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(0.28 0.005 280);
+  --sidebar-ring: oklch(0.556 0 0);
+
+  /* Chat-specific dark tokens */
+  --user-bubble: oklch(0.2 0.02 260);
+  --agent-bubble: oklch(0.19 0.005 280);
+  --tool-call: oklch(0.22 0.01 260);
+  --diff-add: oklch(0.2 0.08 145);
+  --diff-remove: oklch(0.22 0.1 20);
+  --terminal-bg: oklch(0.1 0 0);
+  --file-preview: oklch(0.18 0.02 260);
+}
+
+/* ── Tailwind CSS Variable Mappings ────────────────────── */
+
+@theme inline {
+  --font-sans: "Geist Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+    "Liberation Mono", "Courier New", monospace;
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+
+  /* Application-specific tokens */
+  --color-user-bubble: var(--user-bubble);
+  --color-agent-bubble: var(--agent-bubble);
+  --color-tool-call: var(--tool-call);
+  --color-diff-add: var(--diff-add);
+  --color-diff-remove: var(--diff-remove);
+  --color-terminal-bg: var(--terminal-bg);
+  --color-file-preview: var(--file-preview);
+
+  --radius-sm: calc(var(--radius) - 0.125rem);
+  --radius-md: var(--radius);
+  --radius-lg: calc(var(--radius) + 0.125rem);
+  --radius-xl: calc(var(--radius) + 0.25rem);
+}
+
+/* ── Base Styles ───────────────────────────────────────── */
+
+@layer base {
+  /*
+   * Font smoothing is applied to every element (not just body) because macOS
+   * WKWebView disables subpixel antialiasing on layer-backed views. Without
+   * explicit grayscale smoothing, text and icons render jagged/blurry.
+   */
+  * {
+    @apply border-border outline-ring/50;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "ss01", "ss02", "cv01", "cv02";
+    text-rendering: optimizeLegibility;
+  }
+  html {
+    @apply font-sans;
+  }
+  pre,
+  code {
+    font-feature-settings: normal;
+  }
+}
+
+/* ── Custom Utilities ──────────────────────────────────── */
+
+@utility no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* ── Scrollbar ─────────────────────────────────────────── */
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--muted-foreground);
+}
+
+/* ── Animations ────────────────────────────────────────── */
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@utility animate-slide-in-right {
+  animation: slideInRight 0.35s ease-out both;
+}
+
+@utility animate-slide-in-up {
+  animation: slideInUp 0.25s ease-out both;
+}
+
+/* ── Markdown overrides ────────────────────────────────── */
+
+.prose pre {
+  @apply bg-muted/40 border border-border/40 rounded-lg;
+}
+.prose code {
+  @apply text-[0.85em] font-normal;
+}
+.prose p {
+  @apply leading-relaxed;
+}
+.prose img {
+  @apply rounded-lg border border-border/20;
+}
+
+/* Light mode: ensure inside-code text is dark enough */
+.light .prose code,
+.light .prose pre code {
+  @apply text-foreground/90;
+}
+.light .prose pre {
+  @apply bg-muted/60 border-border/50;
+}
+.light .prose code:not(pre code) {
+  @apply bg-muted/40 px-1 py-0.5 rounded border border-border/20;
+}
+
+/* Dark mode: prose-invert already handles most, but pre needs solid bg */
+.dark .prose pre {
+  @apply bg-muted/40 border-border/40;
+}
+.dark .prose code:not(pre code) {
+  @apply bg-muted/30 px-1 py-0.5 rounded border border-border/20;
+}

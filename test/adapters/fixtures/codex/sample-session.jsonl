@@ -1,0 +1,4 @@
+{"type":"session_meta","payload":{"id":"test-session-123","model_provider":"claude-3-opus-20240229","cwd":"/Users/testuser/Projects/my-project"},"timestamp":"2026-06-13T10:00:00.000Z"}
+{"type":"response_item","payload":{"type":"message","role":"user","content":[{"text":"Hello, how do I add authentication?"}]},"timestamp":"2026-06-13T10:00:01.000Z"}
+{"type":"response_item","payload":{"type":"message","role":"assistant","content":[{"text":"I can help you add authentication. Here's how..."}],"tool_calls":[{"name":"readFile","arguments":"{\"path\":\"src/index.ts\"}"}]},"timestamp":"2026-06-13T10:00:05.000Z"}
+{"type":"response_item","payload":{"type":"message","role":"user","content":[{"text":"Show me the final code"}]},"timestamp":"2026-06-13T10:00:10.000Z"}
