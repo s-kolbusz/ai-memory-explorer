@@ -87,7 +87,7 @@ Default directories are registered automatically on first launch. Custom directo
 
 ### Download
 
-Download the latest DMG from the [Releases page](https://github.com/aimemory/explorer/releases). Supports both Apple Silicon and Intel Macs.
+Download the latest DMG from the [Releases page](https://github.com/s-kolbusz/ai-memory-explorer/releases). Supports both Apple Silicon and Intel Macs.
 
 ### Build from Source
 
@@ -190,11 +190,11 @@ AI Conversations Explorer is built with privacy as a first principle:
 
 ## Contributing
 
-Contributions are welcome! See [open issues](https://github.com/aimemory/explorer/issues) for things to work on, or open a new one.
+Contributions are welcome! See [open issues](https://github.com/s-kolbusz/ai-memory-explorer/issues) for things to work on, or open a new one.
 
 ```bash
-git clone https://github.com/aimemory/explorer.git
-cd explorer
+git clone https://github.com/s-kolbusz/ai-memory-explorer.git
+cd ai-memory-explorer
 bun install
 bun run tauri-dev
 ```
