@@ -54,6 +54,19 @@ jobs:
       - name: Build app bundle
         run: bunx tauri build --bundles app --target "${{ matrix.target }}"
 
+      - name: Free disk space for DMG creation
+        run: |
+          df -h /
+          # The Rust build leaves multi-GB of intermediate artifacts in target/.
+          # We only need the final .app bundle (in bundle/) to create the DMG.
+          for dir in src-tauri/target/*/release src-tauri/target/release; do
+            [ -d "$dir" ] || continue
+            find "$dir" -mindepth 1 -maxdepth 1 ! -name bundle -exec rm -rf {} +
+          done
+          # Cargo registry/git caches are regeneratable and consume GBs.
+          rm -rf ~/.cargo/registry ~/.cargo/git
+          df -h /
+
       - name: Package DMG
         run: bun run package:macos-dmg
 
@@ -80,13 +93,43 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           cat > release-notes.md <<'NOTES'
-          macOS public beta build.
+          ## First Public Beta
 
-          Supported conversation sources: Codex, Claude Code, Antigravity, and Gemini CLI.
+          AI Conversations Explorer is a privacy-first desktop app that scans your local CLI coding-agent session archives and presents them in a single, searchable interface.
 
-          Search includes visible messages, tool calls, terminal output, diffs, file previews, and errors.
+          ### Supported Providers
 
-          Diagnostics are manual only; issue reports do not include conversation contents by default.
+          - **Codex** — `~/.codex/sessions`
+          - **Claude Code** — `~/.claude/sessions`
+          - **Antigravity** — `~/.gemini/antigravity-cli/brain`
+          - **Gemini CLI** — `~/.gemini/tmp`
+
+          Custom directories can be added from Settings or onboarding.
+
+          ### Features
+
+          - **Full-text search** across messages, tool calls, terminal output, diffs, file previews, and errors (SQLite FTS5)
+          - **Multi-provider unified view** with provider filters, date range, and errors-only toggle
+          - **Full transcript viewer** with rendered Markdown, collapsible system events, structured metadata, timing, and token usage
+          - **Tool call & diff viewer** with syntax-highlighted additions/removals
+          - **Infinite scroll** through thousands of sessions
+          - **Dark, light, and system-aware themes**
+          - **Custom directory scanning** with content-hash-based incremental indexing
+
+          ### Bug Fixes (since initial development)
+
+          - Fixed React hooks error when transitioning from onboarding to the main explorer on first run
+          - Fixed blurry text and icon rendering in the macOS Tauri webview (font smoothing)
+          - Fixed blank conversation list when scrolling fast through large session counts
+
+          ### Known Limitations
+
+          - macOS only (Apple Silicon and Intel DMGs attached)
+          - Diagnostics are manual only; issue reports include scan metadata, not conversation contents
+
+          ### Privacy
+
+          All processing is local. No telemetry, no cloud sync, no data leaves your machine.
           NOTES
 
           if gh release view "$RELEASE_TAG" >/dev/null 2>&1; then
